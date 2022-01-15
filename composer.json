@@ -1,0 +1,48 @@
+{
+    "name": "tobento/service-resolver-container",
+    "type": "library",
+    "description": "Container resolver implementation.",
+    "keywords": [
+        "tobento",
+        "package",
+        "resolver",
+        "container",
+        "psr-11"
+	],
+    "homepage": "https://www.tobento.ch",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Strub",
+            "email": "info@tobento.ch",
+            "homepage": "https://www.tobento.ch"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,    
+    "require": {
+        "php": ">=8.0",
+        "psr/container": "^2.0",
+        "tobento/service-container": "^1.0",
+        "tobento/service-resolver": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^4.0"
+    },    
+    "autoload": {
+        "psr-4": {
+            "Tobento\\Service\\ResolverContainer\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tobento\\Service\\ResolverContainer\\Test\\": "tests",
+            "Tobento\\Service\\Resolver\\Test\\": "vendor/tobento/service-resolver/tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --testdox --colors=always",
+        "psalm": "vendor/bin/psalm"
+    }
+}
