@@ -25,7 +25,7 @@ use Closure;
 class ContainerResolver extends Resolver
 {
     /**
-     * @var array<int, RuleInterface> The rules.
+     * @var array<int, array<int, RuleInterface>> The rules.
      */    
     protected array $rules = [];
     
@@ -39,9 +39,6 @@ class ContainerResolver extends Resolver
      *
      * @param string $id Identifier of the entry.
      * @param array<int|string, mixed> $parameters
-     *
-     * @throws ResolverException
-     *
      * @return mixed
      */
     public function resolve(string $id, array $parameters = []): mixed
@@ -53,7 +50,6 @@ class ContainerResolver extends Resolver
      * Resolve the given definition.
      *
      * @param DefinitionInterface $definition
-     *
      * @return mixed The value of the resolved definition.
      */
     public function resolveDefinition(DefinitionInterface $definition): mixed
@@ -76,7 +72,7 @@ class ContainerResolver extends Resolver
         // Handle closure definition.
         if ($value instanceof Closure)
         {
-            $value = $value($this->container);
+            $value = $this->autowire->call($value);
         }
         
         // Handle method calls.
